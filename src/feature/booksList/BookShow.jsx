@@ -15,42 +15,44 @@ const BookShow = () => {
   };
 
   return (
-    <>
-      <ul className=" grid grid-cols-3 gap-1.5 p-5">
-        {books && books.length > 0 ? (
-          books.map((book) => (
-            <div
-              key={book.id}
-              className="  p-5 bg-green-200  text-center rounded-xl"
-            >
+    <section>
+      {books && books.length > 0 ? (
+        <div className="books-grid">
+          {books.map((book) => (
+            <article key={book.id} className="book-item">
               {editingBook?.id === book.id ? (
                 <EditBok book={book} onClose={() => setEditingBook(null)} />
               ) : (
-                <li className=" text-xl font-medium">
-                  {book.title} by {book.author} - $ {book.price}
-                  <div className=" flex justify-center gap-2 mt-4">
+                <>
+                  <div>
+                    <h3 className="book-title">{book.title}</h3>
+                    <div className="book-meta">
+                      {book.author} • ${book.price}
+                    </div>
+                  </div>
+                  <div className="flex gap-2 justify-end">
                     <button
                       onClick={() => setEditingBook(book)}
-                      className="btn btn-success  text-white ml-5"
+                      className="btn btn-outline"
                     >
                       Edit
                     </button>
                     <button
                       onClick={() => handleDelete(book.id)}
-                      className="text-white btn btn-error"
+                      className="btn btn-danger"
                     >
                       Delete
                     </button>
                   </div>
-                </li>
+                </>
               )}
-            </div>
-          ))
-        ) : (
-          <p>No books is here </p>
-        )}
-      </ul>
-    </>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <p className="text-muted">No books available.</p>
+      )}
+    </section>
   );
 };
 

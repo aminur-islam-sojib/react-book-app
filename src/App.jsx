@@ -4,11 +4,19 @@ import BookShow from './feature/booksList/BookShow';
 
 function App() {
   return (
-    <>
-      <h1 className=" text-3xl font-bold text-center mt-2">List of books </h1>
-      <AddBook />
-      <BookShow />
-    </>
+    <div className="container">
+      <header className="app-header">
+        <h1 className="app-title">Book Manager</h1>
+        <div className="actions">
+          <button className="btn btn-outline">Profile</button>
+        </div>
+      </header>
+
+      <main className="app-main">
+        <AddBook />
+        <BookShow />
+      </main>
+    </div>
   );
 }
 
